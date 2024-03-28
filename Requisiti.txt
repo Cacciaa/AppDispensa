@@ -1,0 +1,7 @@
+L'app consiste nella gestione di una dispensa personale con le seguenti funzionalità:
+- La gestione della dispensa tramite l’inserimento e la rimozione dei cibi da parte dell’utente.
+- Una funzione di notifica che avvisi l’utente quando sia necessario andare a fare la spesa.
+- Una funzione che permetta, attraverso la propria posizione, di consigliare i supermercati vicini.
+- Una funzione di login che permetta di accedere al proprio account per salvare i propri dati.
+- Una funzione opzionale per l'utente che permette di monitorare la quantità di macronutrienti assunti in una giornata
+	in base a valori inseriti dall'utente stesso nella propria area personale.
