@@ -26,4 +26,7 @@ interface UserDao {
 
     @Query("SELECT * FROM User ORDER BY uid ASC")
     fun readAllData(): LiveData<List<User>>
+
+    @Query("SELECT uid FROM User WHERE email LIKE :emailInserita AND password LIKE :pswInserita")
+    fun getUserId(emailInserita:String, pswInserita:String): Int
 }

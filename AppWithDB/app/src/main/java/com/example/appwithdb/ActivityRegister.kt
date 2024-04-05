@@ -30,7 +30,11 @@ class ActivityRegister : AppCompatActivity() {
         var psw = editPassword.text.toString()
 
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        mUserViewModel.addUser(User(0,nome, cognome, mail, psw))
+        mUserViewModel.addUser(User(firstName = nome, lastName = cognome, email = mail, password = psw))
+
+        Toast.makeText(this,"Utente registrato correttamente!",Toast.LENGTH_LONG).show()
+
+        this.finish()
 
     }
 }

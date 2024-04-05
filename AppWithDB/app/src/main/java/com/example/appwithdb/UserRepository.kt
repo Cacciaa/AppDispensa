@@ -6,6 +6,11 @@ class UserRepository(private val userDao: UserDao) {
 
     val readAllData: LiveData<List<User>> = userDao.readAllData()
 
+
+    fun getUserId(emailInserita: String, passwordInserita:String): Int {
+        return userDao.getUserId(emailInserita, passwordInserita)
+    }
+
     suspend fun addUser(user: User){
         userDao.addUser(user)
     }

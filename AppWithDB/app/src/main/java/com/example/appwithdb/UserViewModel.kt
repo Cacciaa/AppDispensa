@@ -20,6 +20,15 @@ class UserViewModel (application: Application): AndroidViewModel(application) {
         readAllData = repository.readAllData
     }
 
+    fun getUserId(emailInserita: String, passwordInserita:String): Int? {
+        var id: Int? = null
+        viewModelScope.launch(Dispatchers.IO) {
+            id = repository.getUserId(emailInserita, passwordInserita)
+        }
+
+        return id
+    }
+
     fun addUser(user: User){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(user)
