@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AppDispensa</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="dispensa">Dispensa</string>
+    <string name="crea_la_tua_dispensa_digitale">Crea la tua dispensa digitale</string>
+    <string name="login">Accedi</string>
+    <string name="nome">Nome</string>
+    <string name="indirizzo_email">Indirizzo Email</string>
+    <string name="password">Password</string>
+    <string name="sei_gi_registrato">Sei già registrato?</string>
+    <string name="registrati">Registrati</string>
+    <string name="accedi">Accedi</string>
+    <string name="non_sei_registrato">Non sei registrato?</string>
+</resources>
