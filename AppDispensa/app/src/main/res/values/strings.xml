@@ -20,4 +20,6 @@
     <string name="registrati">Registrati</string>
     <string name="accedi">Accedi</string>
     <string name="non_sei_registrato">Non sei registrato?</string>
+    <string name="vicino_a_te">Vicino a te</string>
+    <string name="utente">Utente:</string>
 </resources>

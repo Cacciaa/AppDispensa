@@ -14,4 +14,9 @@ class RegistrationActivity : AppCompatActivity() {
     fun login(view: View) {
         startActivity(Intent(this,LoginActivity::class.java))
     }
+
+    fun goLogin(view: View) {
+        startActivity(Intent(this,MainActivity::class.java))
+
+    }
 }
