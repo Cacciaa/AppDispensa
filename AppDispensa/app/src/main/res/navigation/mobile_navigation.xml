@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_dispensa"
-        android:name="com.example.appdispensa.ui.gallery.DispensaFragment"
+        android:name="com.example.appdispensa.ui.dispensa.DispensaFragment"
         android:label="@string/dispensa"
         tools:layout="@layout/dispensa_fragment" />
 
     <fragment
         android:id="@+id/nav_maps"
-        android:name="com.example.appdispensa.ui.slideshow.Maps"
+        android:name="com.example.appdispensa.ui.maps.MapsFragment"
         android:label="@string/vicino_a_te"
         tools:layout="@layout/maps_fragment" />
 </navigation>
