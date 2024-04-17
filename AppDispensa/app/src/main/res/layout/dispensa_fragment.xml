@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dispensa.DispensaFragment">
+    tools:context=".ui.dispensa.DispensaFragment"
+    android:background="@color/mediumGray">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dispensa_rec"
