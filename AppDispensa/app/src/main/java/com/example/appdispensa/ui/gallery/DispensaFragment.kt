@@ -2,9 +2,12 @@ package com.example.appdispensa.ui.gallery
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.appdispensa.R
 import com.example.appdispensa.databinding.DispensaFragmentBinding
 
 class DispensaFragment : Fragment() {
@@ -30,4 +33,7 @@ class DispensaFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
+
 }

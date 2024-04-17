@@ -14,11 +14,11 @@ import com.example.appdispensa.DetailedDispensaItemActivity
 import com.example.appdispensa.R
 import com.example.appdispensa.models.DispensaModel
 
-class DispensaAdapter(context: Context?, list:List<DispensaModel>) : RecyclerView.Adapter<DispensaAdapter.ViewHolder>() {
+class DispensaAdapter(context: Context?, list:MutableList<DispensaModel>) : RecyclerView.Adapter<DispensaAdapter.ViewHolder>(){
 
     var context: Context? = context
 
-    var list: List<DispensaModel>? = list
+    var list: MutableList<DispensaModel>? = list
 
     class ViewHolder : RecyclerView.ViewHolder {
 
@@ -48,9 +48,11 @@ class DispensaAdapter(context: Context?, list:List<DispensaModel>) : RecyclerVie
         holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 var intent = Intent(context,DetailedDispensaItemActivity::class.java)
-                intent.putExtra("name",list!!.get(position).name)
+                intent.putExtra("nome",list!!.get(position).name)
                 context!!.startActivity(intent)
             }
         })
+
+
     }
 }
