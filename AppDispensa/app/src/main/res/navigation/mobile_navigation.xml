@@ -22,4 +22,14 @@
         android:name="com.example.appdispensa.ui.maps.MapsFragment"
         android:label="@string/vicino_a_te"
         tools:layout="@layout/maps_fragment" />
+
+    <fragment
+        android:id="@+id/nav_macro"
+        android:name="com.example.appdispensa.ui.macro.MacroFragment"
+        android:label="Macro"
+        tools:layout="@layout/fragment_macro"/>
+
+
+
+
 </navigation>

@@ -13,7 +13,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -54,4 +54,7 @@ dependencies {
 
     implementation("com.makeramen:roundedimageview:2.3.0")
     implementation("com.google.code.gson:gson:2.6.2")
+
+    implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
+    implementation("androidx.multidex:multidex:2.0.1")
 }

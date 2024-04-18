@@ -18,15 +18,14 @@
             android:textSize="18sp"
             android:textColor="@color/purple_700"
             android:textStyle="bold"
-            android:text="@string/nuovo_prodotto"
+            android:text="Inserimento Macronutrienti"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:text="@string/nome_prodotto"
+            android:text="@string/carboidrati"
             android:gravity="center"
-            android:id="@+id/textView1"
             android:textSize="16sp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -35,20 +34,19 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/editTextInserisci"
+            android:id="@+id/editTextCarbo"
             android:textColor="@color/white"
             android:textColorHint="@color/whiteHint"
-            android:hint="@string/nomeHintProd"
+            android:hint="@string/quantit"
             android:layout_marginTop="20dp"
             android:layout_width="285sp"
             android:layout_height="48dp"
-            android:inputType="text"
+            android:inputType="number"
             android:importantForAutofill="no"/>
 
         <TextView
-            android:text="@string/quantit"
+            android:text="Proteine"
             android:gravity="center"
-            android:id="@+id/textView2"
             android:textSize="16sp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -57,7 +55,49 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/editTextQuantity"
+            android:id="@+id/editTextProteine"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteHint"
+            android:hint="@string/quantProd"
+            android:layout_marginTop="18dp"
+            android:layout_width="285sp"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:importantForAutofill="no"/>
+
+        <TextView
+            android:text="Fibre"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/editTextFibre"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteHint"
+            android:hint="@string/quantProd"
+            android:layout_marginTop="18dp"
+            android:layout_width="285sp"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:importantForAutofill="no"/>
+
+        <TextView
+            android:text="Grassi"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/editTextGrassi"
             android:textColor="@color/white"
             android:textColorHint="@color/whiteHint"
             android:hint="@string/quantProd"
@@ -76,19 +116,18 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/btnConfermaD"
+                android:id="@+id/btnConfermaMacro"
                 android:backgroundTint="@color/purple_700"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textAllCaps="false"
                 android:text="@string/conferma"
-                android:clickable="true"
                 android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/btnAnnullaD"
+                android:id="@+id/btnAnnullaMacro"
                 android:backgroundTint="#A4A4A4"
                 android:textColor="@color/white"
                 android:textSize="14sp"

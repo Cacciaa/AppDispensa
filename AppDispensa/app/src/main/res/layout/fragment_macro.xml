@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.macro.MacroFragment"
+    android:backgroundTint="@color/mediumGray">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarMacro"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:backgroundTint="@color/mediumGray"
+        app:elevation="0dp"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_macro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_add_24"
+        android:backgroundTint="@color/purple_500"
+        android:baselineAlignBottom="false"
+        android:layout_gravity="top|end"
+        app:fabSize="normal"
+        app:layout_anchorGravity="top|end"
+        app:tint="@null"
+        app:layout_anchor="@id/appBarMacro"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"
+        android:clickable="true" />
+
+    <com.anychart.AnyChartView
+        android:id="@+id/chartMacro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/mediumGray"
+
+        />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

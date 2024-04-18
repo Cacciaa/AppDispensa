@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -62,23 +64,46 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
             dialogDispensaCreate.show();
 
             var btnAdd = dialogDispensaCreate.findViewById<Button>(R.id.btnConfermaD)
+            var btnAnn = dialogDispensaCreate.findViewById<Button>(R.id.btnAnnullaD)
 
             btnAdd!!.setOnClickListener (object:View.OnClickListener{
                 override fun onClick(view: View?) {
 
-                Toast.makeText(view!!.context,"ciaociao",Toast.LENGTH_LONG).show()
+                    val nomeInserito = dialogDispensaCreate.findViewById<EditText>(R.id.editTextInserisci)
+                    val quantInserito = dialogDispensaCreate.findViewById<EditText>(R.id.editTextQuantity)
+
+                    if(nomeInserito!!.text.toString().isNotEmpty() && quantInserito!!.text.toString().isNotEmpty()){
+
+                        var quant: Int = Integer.parseInt(quantInserito!!.text.toString())
+                        if(quant>=0 && quant <=10){
+                            Toast.makeText(view!!.context,"Prodotto aggiunto",Toast.LENGTH_SHORT).show()
+                        }
+                        else{
+                            Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+                    else{
+                        Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
+                    }
+
+                    dialogDispensaCreate.dismiss()
             }
+            })
+
+            btnAnn!!.setOnClickListener (object:View.OnClickListener{
+                override fun onClick(view: View?) {
+                    dialogDispensaCreate.dismiss()
+                }
             })
 
        }
 
 
         fabremove!!.setOnClickListener {view ->
-            //call new dialog for adding new item to dispensa
-            //after recall query to db for refreshing data
+            //call remove item from db
+            // go to dispensa fragment and refresh the list after querying to db
             finish()
-
-
         }
 
 

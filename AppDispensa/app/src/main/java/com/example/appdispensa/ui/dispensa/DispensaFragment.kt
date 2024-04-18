@@ -52,6 +52,7 @@ class DispensaFragment : Fragment() {
     }
 
     override fun onResume() {
+        //here refresh by querying to db
         super.onResume()
 
         if(check == false){
@@ -82,10 +83,10 @@ class DispensaFragment : Fragment() {
 
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
-        Toast.makeText(context,"In start",Toast.LENGTH_LONG).show()
-    }
+
+    }*/
 
 
 
