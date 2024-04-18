@@ -12,12 +12,13 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdispensa.DetailedDispensaItemActivity
 import com.example.appdispensa.R
+import com.example.appdispensa.interfaces.OnValueChangeInt
 import com.example.appdispensa.models.DispensaModel
+import com.google.gson.Gson
 
 class DispensaAdapter(context: Context?, list:MutableList<DispensaModel>) : RecyclerView.Adapter<DispensaAdapter.ViewHolder>(){
 
     var context: Context? = context
-
     var list: MutableList<DispensaModel>? = list
 
     class ViewHolder : RecyclerView.ViewHolder {
@@ -50,6 +51,7 @@ class DispensaAdapter(context: Context?, list:MutableList<DispensaModel>) : Recy
                 var intent = Intent(context,DetailedDispensaItemActivity::class.java)
                 intent.putExtra("nome",list!!.get(position).name)
                 context!!.startActivity(intent)
+
             }
         })
 

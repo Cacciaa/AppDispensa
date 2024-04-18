@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appdispensa.R
 import com.example.appdispensa.adapters.DispensaAdapter
 import com.example.appdispensa.databinding.DispensaFragmentBinding
+import com.example.appdispensa.interfaces.OnValueChangeInt
 import com.example.appdispensa.models.DispensaModel
 
 
@@ -85,8 +86,6 @@ class DispensaFragment : Fragment() {
         super.onStart()
         Toast.makeText(context,"In start",Toast.LENGTH_LONG).show()
     }
-
-
 
 
 

@@ -22,4 +22,11 @@
     <string name="non_sei_registrato">Non sei registrato?</string>
     <string name="vicino_a_te">Vicino a te</string>
     <string name="utente">Utente:</string>
+    <string name="nuovo_prodotto">Nuovo Prodotto</string>
+    <string name="nome_prodotto">Nome prodotto:</string>
+    <string name="nomeHintProd">Nome...</string>
+    <string name="quantit">Quantità:</string>
+    <string name="quantProd">Quantità....</string>
+    <string name="conferma">Conferma</string>
+    <string name="annulla">Annulla</string>
 </resources>

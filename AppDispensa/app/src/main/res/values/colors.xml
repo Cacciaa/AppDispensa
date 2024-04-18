@@ -10,4 +10,6 @@
     <color name ="gray">#393d40</color>
     <color name ="darkGrey">#27282c</color>
     <color name="mediumGray">#262523</color>
+    <color name="whiteHint">#C4FFFFFF</color>
+
 </resources>
