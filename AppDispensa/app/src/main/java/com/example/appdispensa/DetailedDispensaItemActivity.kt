@@ -77,6 +77,7 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
                         var quant: Int = Integer.parseInt(quantInserito!!.text.toString())
                         if(quant>=0 && quant <=10){
                             Toast.makeText(view!!.context,"Prodotto aggiunto",Toast.LENGTH_SHORT).show()
+                            dialogDispensaCreate.dismiss()
                         }
                         else{
                             Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
@@ -87,7 +88,7 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
                         Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
                     }
 
-                    dialogDispensaCreate.dismiss()
+
             }
             })
 

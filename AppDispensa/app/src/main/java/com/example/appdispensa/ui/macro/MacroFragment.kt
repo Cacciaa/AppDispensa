@@ -78,11 +78,12 @@ class MacroFragment : Fragment() {
 
                     if(carbo.isNotEmpty() || proteine.isNotEmpty() || fibre.isNotEmpty() || grassi.isNotEmpty()){
                         Toast.makeText(view!!.context,"Macronutrienti aggiunti", Toast.LENGTH_SHORT).show()
+                        dialogMacroCreate.dismiss()
                     }
                     else{
                         Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
                     }
-                    dialogMacroCreate.dismiss()
+
                 }
             })
 

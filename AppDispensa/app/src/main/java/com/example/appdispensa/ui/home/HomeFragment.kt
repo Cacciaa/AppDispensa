@@ -27,9 +27,11 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+
         val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
         val user_id = sharedPreferences.getInt("user_id", 0) //where 0 is default value
-        Toast.makeText(binding.root.context,user_id.toString(),Toast.LENGTH_SHORT).show()
+        //Toast.makeText(binding.root.context,user_id.toString(),Toast.LENGTH_SHORT).show()
 
         return root
     }

@@ -69,12 +69,13 @@ class DispensaFragment : Fragment() {
                     if(nomeDispensa.isNotEmpty()){
                         //Add element to database
                         Toast.makeText(view!!.context,"Dispensa creata", Toast.LENGTH_SHORT).show()
+                        dialogDispensaCreate.dismiss()
                     }
                     else{
                         Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
                     }
                     //close dialog
-                    dialogDispensaCreate.dismiss()
+
                 }
 
             })

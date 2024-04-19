@@ -41,10 +41,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         //set name of users
-        val intent = intent
-        var header: View = navView.getHeaderView(0)
-        var txt : TextView = header.findViewById(R.id.txtEmail)
-        txt.text = "prova@gmail.com"
+
     }
 
 
