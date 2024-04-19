@@ -13,6 +13,20 @@
         android:layout_height="180dp"
         android:backgroundTint="@color/mediumGray"
         app:elevation="0dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grafico_dei_macronutrienti"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:fontFamily="@font/lobster_two"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        app:layout_anchorGravity="center_horizontal"
+        app:layout_anchor="@id/appBarMacro"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_macro"
         android:layout_width="wrap_content"
@@ -24,6 +38,7 @@
         app:fabSize="normal"
         app:layout_anchorGravity="top|end"
         app:tint="@null"
+        android:contentDescription="@string/aggiungi_macronutrienti"
         app:layout_anchor="@id/appBarMacro"
         android:layout_marginTop="100dp"
         android:layout_marginRight="20dp"

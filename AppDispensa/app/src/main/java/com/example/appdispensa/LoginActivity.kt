@@ -1,10 +1,11 @@
 package com.example.appdispensa
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.appdispensa.ui.home.HomeFragment
+import androidx.appcompat.app.AppCompatActivity
+
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +18,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun goHome(view: View) {
+        val sharedPreferences = baseContext.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("user_id", 10)
+        editor.apply()
         startActivity(Intent(this,MainActivity::class.java))
     }
 }

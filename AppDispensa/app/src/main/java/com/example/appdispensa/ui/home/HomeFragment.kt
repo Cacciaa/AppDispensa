@@ -1,13 +1,16 @@
 package com.example.appdispensa.ui.home
 
+
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.appdispensa.databinding.FragmentHomeBinding
+
 
 class HomeFragment : Fragment() {
 
@@ -24,6 +27,9 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
+        val user_id = sharedPreferences.getInt("user_id", 0) //where 0 is default value
+        Toast.makeText(binding.root.context,user_id.toString(),Toast.LENGTH_SHORT).show()
 
         return root
     }
