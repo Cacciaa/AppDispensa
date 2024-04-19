@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
         val sharedPreferences = baseContext.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putInt("user_id", 10)
+        editor.remove("user_id")
         editor.apply()
         startActivity(Intent(this,MainActivity::class.java))
     }

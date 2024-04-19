@@ -49,7 +49,7 @@ class DispensaFragment : Fragment() {
         //CALL updateFragmentView for showing all the dispensa of the current user
         updateFragmentView()
         val btnAddDispensa = binding.root.findViewById<FloatingActionButton>(R.id.fab_add_dispensa)
-
+        Toast.makeText(binding.root.context,"OnCreateView",Toast.LENGTH_SHORT).show()
         btnAddDispensa.setOnClickListener{view->
             val inflater: LayoutInflater = getLayoutInflater();
             val dialoglayout: View = inflater.inflate(R.layout.add_dispensa_dialog, null);
@@ -62,14 +62,18 @@ class DispensaFragment : Fragment() {
             val btnConfermaDispensa= dialogDispensaCreate.findViewById<Button>(R.id.btnConfermaDispensa)
             val btnAnnullaDispensa = dialogDispensaCreate.findViewById<Button>(R.id.btnAnnullaDispensa)
 
+
             btnConfermaDispensa!!.setOnClickListener(object:View.OnClickListener{
                 override fun onClick(v: View?) {
                     val nomeDispensa : String = dialogDispensaCreate.findViewById<EditText>(R.id.editTextDispensa)!!.text.toString()
 
                     if(nomeDispensa.isNotEmpty()){
-                        //Add element to database
+
                         Toast.makeText(view!!.context,"Dispensa creata", Toast.LENGTH_SHORT).show()
                         dialogDispensaCreate.dismiss()
+                        //Add element to database
+                        //Refresh
+
                     }
                     else{
                         Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
@@ -94,50 +98,33 @@ class DispensaFragment : Fragment() {
         _binding = null
     }
 
+
     override fun onResume() {
-        //here refresh by querying to db
         super.onResume()
-
-        if(check == false){
-            recyclerView = binding.root.findViewById(R.id.dispensa_rec);
-
-            recyclerView!!.layoutManager = LinearLayoutManager(context)
-            dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa1"))
-            dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa2"))
-            dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa3"))
-            dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa4"))
-            dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa5"))
-            dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa6"))
-
-            dispensaAdapter = DispensaAdapter(context,dispensaModels)
-            recyclerView!!.adapter = dispensaAdapter
-            dispensaAdapter!!.notifyDataSetChanged()
-            check = true
-        }
-        else{
-            recyclerView = binding.root.findViewById(R.id.dispensa_rec);
-
-            recyclerView!!.layoutManager = LinearLayoutManager(context)
-            dispensaModels.removeAt(0)
-            dispensaAdapter = DispensaAdapter(context,dispensaModels)
-            recyclerView!!.adapter = dispensaAdapter
-            dispensaAdapter!!.notifyItemRemoved(0)
-        }
-
+        //make filter for catching if onResume lock screen or onResume by delete dispensa
+        //see login activity and homefragment
     }
-
 
     fun addDispensaToList(){
 
     }
 
     fun updateFragmentView(){
+        recyclerView = binding.root.findViewById(R.id.dispensa_rec);
 
+        recyclerView!!.layoutManager = LinearLayoutManager(context)
+        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa1"))
+        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa2"))
+        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa3"))
+        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa4"))
+        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa5"))
+        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa6"))
+
+        dispensaAdapter = DispensaAdapter(context,dispensaModels)
+        recyclerView!!.adapter = dispensaAdapter
+        dispensaAdapter!!.notifyDataSetChanged()
     }
-    /*override fun onStart() {
-        super.onStart()
 
-    }*/
 
 
 
