@@ -34,6 +34,7 @@
             android:textStyle="bold"
             android:padding="15dp"
             android:layout_margin="5dp"
+            android:onClick="esci"
             />
 
     </com.google.android.material.navigation.NavigationView>

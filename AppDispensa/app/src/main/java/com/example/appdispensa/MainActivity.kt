@@ -1,5 +1,6 @@
 package com.example.appdispensa
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -49,5 +50,10 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun esci(view: View) {
+
+            startActivity(Intent(this, WelcomeActivity::class.java))
     }
 }

@@ -45,7 +45,7 @@
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextNome"
         android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextEmail"
         android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -73,12 +73,13 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNome"
         app:layout_constraintWidth_percent=".8"
         android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextPassword"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -89,7 +90,7 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
         app:layout_constraintWidth_percent=".8"
         android:layout_marginTop="10dp"/>
 
@@ -106,7 +107,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         app:layout_constraintVertical_bias=".6"
         app:layout_constraintWidth_percent=".8"
         android:onClick="goLogin"
