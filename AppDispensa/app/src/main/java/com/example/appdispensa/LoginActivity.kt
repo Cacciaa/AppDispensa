@@ -25,11 +25,13 @@ class LoginActivity : AppCompatActivity() {
 
         var email:String = findViewById<EditText>(R.id.editTextEmailL).text.toString()
         var password:String = findViewById<EditText>(R.id.editTextPasswordL).text.toString()
+        println(email)
 
         if(email.isNotEmpty() && password.isNotEmpty()) {
 
             var db: MyDbHelper = MyDbHelper(this@LoginActivity, "dbDispensa.db", 1)
             var cursor: Cursor = db.loginUser(email, password)
+
 
             if(cursor.count == 1) {
 

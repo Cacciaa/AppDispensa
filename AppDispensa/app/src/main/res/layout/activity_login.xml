@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#CCCCCC"
         android:drawableLeft="@drawable/baseline_alternate_email_24"
+        android:inputType="textEmailAddress"
         android:drawablePadding="13dp"
         android:hint="@string/indirizzo_email"
         android:textColor="@color/white"
