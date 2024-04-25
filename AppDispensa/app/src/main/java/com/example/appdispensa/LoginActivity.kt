@@ -31,8 +31,6 @@ class LoginActivity : AppCompatActivity() {
             var db: MyDbHelper = MyDbHelper(this@LoginActivity, "dbDispensa.db", 1)
             var cursor: Cursor = db.loginUser(email, password)
 
-            println(cursor.count)
-
             if(cursor.count == 1) {
 
                 while(cursor.moveToNext()){

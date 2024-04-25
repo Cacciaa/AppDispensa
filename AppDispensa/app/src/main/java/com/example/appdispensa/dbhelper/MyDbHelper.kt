@@ -24,6 +24,8 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
         onCreate(db)
     }
 
+
+    // Query Registrazione Utente
     fun registerUser(nome:String,email:String,password:String){
 
         var db:SQLiteDatabase = this.writableDatabase
@@ -43,6 +45,7 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
 
     }
 
+    // Query Login Utente
     fun loginUser(email:String,password:String):Cursor{
 
         var db:SQLiteDatabase = this.writableDatabase
@@ -52,6 +55,22 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
                             DbEnum.COLONNA_EMAIL.valore + "=?"
 
         var cursor: Cursor = db.rawQuery(query, arrayOf(password, email))
+
+
+        return cursor
+
+    }
+
+
+    // Query che ritorna il Nome dell'utente e la sua email, chiamata dopo il login per sostituire i valori all'interno della Home Page
+    fun getUserInfo(idUser:Int):Cursor{
+
+        var db:SQLiteDatabase = this.writableDatabase
+        var query:String = "SELECT " + DbEnum.COLONNA_NOME.valore + ", " + DbEnum.COLONNA_EMAIL.valore +
+                " FROM " + DbEnum.TABELLA_UTENTI.valore +
+                " WHERE " + DbEnum.COLONNA_ID.valore + "=?"
+
+        var cursor: Cursor = db.rawQuery(query, arrayOf(idUser.toString()))
 
 
         return cursor
