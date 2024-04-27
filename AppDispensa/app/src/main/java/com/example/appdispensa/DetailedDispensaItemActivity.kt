@@ -37,7 +37,8 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
         setContentView(R.layout.activity_detailed_dispensa_item)
         var collapsebar : CollapsingToolbarLayout = findViewById(R.id.collapsbar)
 
-        var nome: String? = intent.getStringExtra("nome")
+        var nome: String? = intent.getStringExtra("name")
+        var idDispensa: Int? = intent.getIntExtra("id_dispensa", -1)
 
         collapsebar.title = nome
         recyclerView = findViewById(R.id.detailed_dispensa_rec);

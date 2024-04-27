@@ -1,6 +1,9 @@
 package com.example.appdispensa.ui.dispensa
 
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.database.Cursor
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -17,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appdispensa.R
 import com.example.appdispensa.adapters.DispensaAdapter
 import com.example.appdispensa.databinding.DispensaFragmentBinding
+import com.example.appdispensa.dbhelper.MyDbHelper
 import com.example.appdispensa.interfaces.OnValueChangeInt
 import com.example.appdispensa.models.DispensaModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -46,10 +50,8 @@ class DispensaFragment : Fragment() {
     ): View {
         _binding = DispensaFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        //CALL updateFragmentView for showing all the dispensa of the current user
-        updateFragmentView()
         val btnAddDispensa = binding.root.findViewById<FloatingActionButton>(R.id.fab_add_dispensa)
-        Toast.makeText(binding.root.context,"OnCreateView",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(binding.root.context,"OnCreateView",Toast.LENGTH_SHORT).show()
         btnAddDispensa.setOnClickListener{view->
             val inflater: LayoutInflater = getLayoutInflater();
             val dialoglayout: View = inflater.inflate(R.layout.add_dispensa_dialog, null);
@@ -103,22 +105,33 @@ class DispensaFragment : Fragment() {
         super.onResume()
         //make filter for catching if onResume lock screen or onResume by delete dispensa
         //see login activity and homefragment
+        //Toast.makeText(context,"onResume",Toast.LENGTH_SHORT).show()
+        updateFragmentView()
     }
 
     fun addDispensaToList(){
 
     }
 
-    fun updateFragmentView(){
+    private fun updateFragmentView(){
+
+        dispensaModels.clear()
+
+        val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
+        val user_id = sharedPreferences.getInt("user_id", -1) //where 0 is default value
+
+        var db: MyDbHelper = MyDbHelper(this.requireContext(), "dbDispensa.db", 1)
+        var cursor: Cursor = db.getDispense(user_id)
+
         recyclerView = binding.root.findViewById(R.id.dispensa_rec);
 
         recyclerView!!.layoutManager = LinearLayoutManager(context)
-        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa1"))
-        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa2"))
-        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa3"))
-        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa4"))
-        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa5"))
-        dispensaModels.add(DispensaModel(Color.parseColor("#56181e"),"Dispensa6"))
+
+        if (cursor.moveToFirst()) {
+            do {
+                dispensaModels.add(DispensaModel(cursor.getInt(0),cursor.getString(1)))
+            } while (cursor.moveToNext());
+        }
 
         dispensaAdapter = DispensaAdapter(context,dispensaModels)
         recyclerView!!.adapter = dispensaAdapter

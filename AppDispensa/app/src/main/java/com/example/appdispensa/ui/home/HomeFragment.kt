@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var userWelcome = view.findViewById<TextView>(R.id.txtBenvenuto)
+        var textEmptyDispense = view.findViewById<TextView>(R.id.txtElementiDispensa)
 
         val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
         val user_id = sharedPreferences.getInt("user_id", -1) //where 0 is default value
@@ -52,8 +53,14 @@ class HomeFragment : Fragment() {
 
 
         var resultList: ArrayList<String> = extractFromCursorUserAndEmail(cursor)
-        println(resultList)
-        userWelcome.text = resultList.first()
+        userWelcome.text = "Benvenuto/a " + resultList.first()
+        var dispenseVuote = extractEmptyDispenseNumber(db.getEmptyDispense(user_id))
+
+        if (dispenseVuote == 1) {
+            textEmptyDispense.text = "Hai " + dispenseVuote + " dispensa vuota sul tuo profilo"
+        }else{
+            textEmptyDispense.text = "Hai " + dispenseVuote + " dispense vuote sul tuo profilo"
+        }
 
     }
 
@@ -74,5 +81,9 @@ class HomeFragment : Fragment() {
         }
 
         return myList
+    }
+
+    private fun extractEmptyDispenseNumber(cursor:Cursor): Int{
+        return cursor.count
     }
 }

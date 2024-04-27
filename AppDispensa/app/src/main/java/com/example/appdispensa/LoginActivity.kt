@@ -19,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
 
     fun registrati(view: View) {
         startActivity(Intent(this,RegistrationActivity::class.java))
+
+        clearData()
     }
 
     fun goHome(view: View) {
@@ -51,6 +53,18 @@ class LoginActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this, "Campi non corretti", Toast.LENGTH_SHORT).show()
         }
+
+        clearData()
+
+    }
+
+    private fun clearData() {
+
+        var email = findViewById<EditText>(R.id.editTextEmailL)
+        var password = findViewById<EditText>(R.id.editTextPasswordL)
+
+        email.setText("")
+        password.setText("")
 
     }
 }

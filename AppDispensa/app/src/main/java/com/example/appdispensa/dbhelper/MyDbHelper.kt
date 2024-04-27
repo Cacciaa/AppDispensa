@@ -17,6 +17,37 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
                 DbEnum.COLONNA_PASSWORD.valore + " TEXT);"
 
         db!!.execSQL(query)
+
+        query = "CREATE TABLE " + DbEnum.TABELLA_DISPENSA.valore + " (" +
+                DbEnum.COLONNA_ID.valore + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                DbEnum.COLONNA_NOME.valore + " TEXT , " +
+                DbEnum.COLONNA_ID_UTENTE.valore + " INTEGER, " +
+                "FOREIGN KEY (" + DbEnum.COLONNA_ID_UTENTE.valore + ") REFERENCES " + DbEnum.TABELLA_UTENTI.valore + "(" +
+                DbEnum.COLONNA_ID.valore + ") ON UPDATE CASCADE ON DELETE CASCADE);"
+
+        db.execSQL(query)
+
+        query = "CREATE TABLE " + DbEnum.TABELLA_PRODOTTI.valore + " (" +
+                DbEnum.COLONNA_ID.valore + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                DbEnum.COLONNA_NOME.valore + " TEXT , " +
+                DbEnum.COLONNA_QUANTITA.valore + " INTEGER DEFAULT 0, " +
+                DbEnum.COLONNA_ID_DISPENSA.valore + " INTEGER, " +
+                "FOREIGN KEY (" + DbEnum.COLONNA_ID_DISPENSA.valore + ") REFERENCES " + DbEnum.TABELLA_DISPENSA.valore + "(" +
+                DbEnum.COLONNA_ID.valore + ") ON UPDATE CASCADE ON DELETE CASCADE);"
+
+        db.execSQL(query)
+
+        query = "CREATE TABLE " + DbEnum.TABELLA_MACRONUTRIENTI.valore + " (" +
+                DbEnum.COLONNA_ID.valore + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                DbEnum.COLONNA_CARBOIDRATI.valore + " INTEGER DEFAULT 0 , " +
+                DbEnum.COLONNA_PROTEINE.valore + " INTEGER DEFAULT 0, " +
+                DbEnum.COLONNA_GRASSI.valore + " INTEGER DEFAULT 0, " +
+                DbEnum.COLONNA_ID_UTENTE.valore + " INTEGER, " +
+                DbEnum.COLONNA_FIBRE.valore + " INTEGER DEFAULT 0, " +
+                "FOREIGN KEY (" + DbEnum.COLONNA_ID_UTENTE.valore + ") REFERENCES " + DbEnum.TABELLA_UTENTI.valore + "(" +
+                DbEnum.COLONNA_ID.valore + ") ON UPDATE CASCADE ON DELETE CASCADE);"
+
+        db.execSQL(query)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -24,6 +55,10 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
         onCreate(db)
     }
 
+    override fun onOpen(db: SQLiteDatabase?) {
+        super.onOpen(db)
+        db!!.execSQL("PRAGMA foreign_keys = ON")
+    }
 
     // Query Registrazione Utente
     fun registerUser(nome:String,email:String,password:String){
@@ -72,6 +107,47 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
 
         var cursor: Cursor = db.rawQuery(query, arrayOf(idUser.toString()))
 
+
+        return cursor
+
+    }
+
+    // Ritorna gli id delle dispense vuote
+    fun getEmptyDispense(idUser:Int): Cursor{
+
+        /*
+
+        SELECT Dispensa.id
+        FROM Dispensa
+        WHERE Dispensa.id_utente = 1
+        EXCEPT
+        SELECT Prodotti.id_dispensa
+        FROM Prodotti
+
+        */
+
+        var db:SQLiteDatabase = this.writableDatabase
+        var query:String = "SELECT " + DbEnum.COLONNA_ID.valore +
+                " FROM " + DbEnum.TABELLA_DISPENSA.valore +
+                " WHERE " + DbEnum.COLONNA_ID_UTENTE.valore + "=?" +
+                "EXCEPT " +
+                "SELECT "  + DbEnum.COLONNA_ID_DISPENSA.valore +
+                " FROM " + DbEnum.TABELLA_PRODOTTI.valore
+
+        var cursor: Cursor = db.rawQuery(query, arrayOf(idUser.toString()))
+
+        return cursor
+
+    }
+
+    fun getDispense(idUser:Int):Cursor{
+
+        var db:SQLiteDatabase = this.writableDatabase
+        var query:String = "SELECT " + DbEnum.COLONNA_ID.valore + " , " +  DbEnum.COLONNA_NOME.valore +
+                " FROM " + DbEnum.TABELLA_DISPENSA.valore +
+                " WHERE " + DbEnum.COLONNA_ID_UTENTE.valore + "=?"
+
+        var cursor: Cursor = db.rawQuery(query, arrayOf(idUser.toString()))
 
         return cursor
 

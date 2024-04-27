@@ -54,6 +54,7 @@ class DetailedDispensaAdapter(list:MutableList<DetailedDispensaModel>,onvaluecha
                         var pos = holder.adapterPosition
                         if(pos != RecyclerView.NO_POSITION){
                             onvaluechangeint.deleteOnChange(holder.adapterPosition)
+                            // Cancella sul db
                         }
                     }
 

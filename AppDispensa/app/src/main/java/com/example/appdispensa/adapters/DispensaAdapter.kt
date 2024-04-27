@@ -3,6 +3,7 @@ package com.example.appdispensa.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,13 +44,14 @@ class DispensaAdapter(context: Context?, list:MutableList<DispensaModel>) : Recy
     }
 
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
-        holder.imageview!!.setBackgroundColor(list!!.get(position).image)
+        holder.imageview!!.setBackgroundColor(Color.parseColor("#56181e"))
         holder.nome!!.setText(list!!.get(position).name)
 
         holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 var intent = Intent(context,DetailedDispensaItemActivity::class.java)
-                intent.putExtra("nome",list!!.get(position).name)
+                intent.putExtra("id_dispensa",list!!.get(position).id)
+                intent.putExtra("name",list!!.get(position).name)
                 context!!.startActivity(intent)
 
             }

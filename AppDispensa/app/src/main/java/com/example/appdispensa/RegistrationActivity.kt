@@ -16,6 +16,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     fun login(view: View) {
         startActivity(Intent(this,LoginActivity::class.java))
+        clearData()
     }
 
     // Button Register
@@ -38,6 +39,19 @@ class RegistrationActivity : AppCompatActivity() {
             Toast.makeText(this, "Campi non corretti", Toast.LENGTH_SHORT).show()
         }
 
+        clearData()
+
+    }
+
+    private fun clearData() {
+
+        var nome = findViewById<EditText>(R.id.editTextNome)
+        var email = findViewById<EditText>(R.id.editTextEmail)
+        var password = findViewById<EditText>(R.id.editTextPassword)
+
+        nome.setText("")
+        email.setText("")
+        password.setText("")
 
     }
 
