@@ -51,7 +51,7 @@ class DispensaAdapter(context: Context?, list:MutableList<DispensaModel>) : Recy
             override fun onClick(view: View?) {
                 var intent = Intent(context,DetailedDispensaItemActivity::class.java)
                 intent.putExtra("id_dispensa",list!!.get(position).id)
-                intent.putExtra("name",list!!.get(position).name)
+                intent.putExtra("nome_dispensa",list!!.get(position).name)
                 context!!.startActivity(intent)
 
             }

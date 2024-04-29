@@ -154,4 +154,71 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
     }
 
 
+    fun insertDispensa(nome:String,id_utente:Int){
+        var db:SQLiteDatabase = this.writableDatabase
+        var cv:ContentValues = ContentValues()
+
+        cv.put(DbEnum.COLONNA_NOME.valore, nome)
+        cv.put(DbEnum.COLONNA_ID_UTENTE.valore,id_utente)
+
+        var result: Long = db.insert(DbEnum.TABELLA_DISPENSA.valore, null, cv)
+
+        if(result == -1L){
+            Toast.makeText(this.context, "Errore nella creazione della dispensa", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this.context, "Dispensa creata", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    fun getItemOfDispensa(id_dispensa:Int): Cursor{
+        var db:SQLiteDatabase = this.writableDatabase
+        var query:String = "SELECT " + DbEnum.COLONNA_NOME.valore + " , " +  DbEnum.COLONNA_QUANTITA.valore + " , " +  DbEnum.COLONNA_ID.valore +
+                " FROM " + DbEnum.TABELLA_PRODOTTI.valore +
+                " WHERE " + DbEnum.COLONNA_ID_DISPENSA.valore + "=?"
+
+        var cursor: Cursor = db.rawQuery(query, arrayOf(id_dispensa.toString()))
+
+        return cursor
+    }
+
+
+    fun insertItem(nome:String,quantita:Int,id_dispensa:Int){
+        var db:SQLiteDatabase = this.writableDatabase
+        var cv:ContentValues = ContentValues()
+
+        cv.put(DbEnum.COLONNA_NOME.valore, nome)
+        cv.put(DbEnum.COLONNA_QUANTITA.valore,quantita)
+        cv.put(DbEnum.COLONNA_ID_DISPENSA.valore,id_dispensa)
+        var result: Long = db.insert(DbEnum.TABELLA_PRODOTTI.valore, null, cv)
+
+        if(result == -1L){
+            Toast.makeText(this.context, "Errore nell'inserimento del prodotto", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this.context, "Prodotto aggiunto", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun deleteItem(id_item:Int){
+        var db : SQLiteDatabase = this.writableDatabase
+        var result : Int = db.delete(DbEnum.TABELLA_PRODOTTI.valore,"id=?",arrayOf(id_item.toString()))
+        if (result == -1){
+            Toast.makeText(this.context,"Errore durante l'eliminazione del prodotto",Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    fun updateQuantityItem(id_item:Int,quantita:Int){
+        var db : SQLiteDatabase = this.writableDatabase
+        var cv : ContentValues = ContentValues()
+        cv.put(DbEnum.COLONNA_QUANTITA.valore,quantita)
+
+        var result : Int = db.update(DbEnum.TABELLA_PRODOTTI.valore,cv,"id =?",arrayOf(id_item.toString()))
+
+        if (result == -1){
+            Toast.makeText(this.context,"Errore durante l'aggiornamento della quantità",Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
 }

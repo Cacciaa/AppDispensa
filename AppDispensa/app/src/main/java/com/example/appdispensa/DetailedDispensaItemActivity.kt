@@ -1,7 +1,9 @@
 package com.example.appdispensa
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -12,13 +14,16 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdispensa.adapters.DetailedDispensaAdapter
+import com.example.appdispensa.dbhelper.MyDbHelper
 import com.example.appdispensa.interfaces.OnValueChangeInt
 import com.example.appdispensa.models.DetailedDispensaModel
+import com.example.appdispensa.models.DispensaModel
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -35,22 +40,14 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_dispensa_item)
-        var collapsebar : CollapsingToolbarLayout = findViewById(R.id.collapsbar)
+        var collapsbar : CollapsingToolbarLayout = findViewById(R.id.collapsbar)
 
-        var nome: String? = intent.getStringExtra("name")
-        var idDispensa: Int? = intent.getIntExtra("id_dispensa", -1)
+        var nome: String? = intent.getStringExtra("nome_dispensa")
+        var idDispensa: Int = intent.getIntExtra("id_dispensa", -1)
+        collapsbar.title = nome
 
-        collapsebar.title = nome
-        recyclerView = findViewById(R.id.detailed_dispensa_rec);
         imageview = findViewById(R.id.detailed_img)
-        recyclerView!!.layoutManager =(LinearLayoutManager(this))
-        detailedDispensaModelsList = ArrayList()
-        detailedDispensaModelsList.add(DetailedDispensaModel(R.drawable.outline_info_24,"Item1"))
-        detailedDispensaModelsList.add(DetailedDispensaModel(R.drawable.outline_info_24,"Item2"))
-        detailedDispensaModelsList.add(DetailedDispensaModel(R.drawable.outline_info_24,"Item3"))
-        detailedDispensaAdapter = DetailedDispensaAdapter(detailedDispensaModelsList,this)
-        recyclerView!!.adapter=detailedDispensaAdapter
-        detailedDispensaAdapter!!.notifyDataSetChanged()
+
 
         fabadd = findViewById(R.id.fab_add)
         fabremove = findViewById(R.id.fab_remove)
@@ -63,7 +60,6 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
             val dialogDispensaCreate = dialogDispensa.create()
             dialogDispensaCreate.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialogDispensaCreate.show();
-
             var btnAdd = dialogDispensaCreate.findViewById<Button>(R.id.btnConfermaD)
             var btnAnn = dialogDispensaCreate.findViewById<Button>(R.id.btnAnnullaD)
 
@@ -76,9 +72,13 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
                     if(nomeInserito!!.text.toString().isNotEmpty() && quantInserito!!.text.toString().isNotEmpty()){
 
                         var quant: Int = Integer.parseInt(quantInserito!!.text.toString())
-                        if(quant>=0 && quant <=10){
+                        if(quant>0 && quant <=10){
                             Toast.makeText(view!!.context,"Prodotto aggiunto",Toast.LENGTH_SHORT).show()
                             dialogDispensaCreate.dismiss()
+                            //add product to db
+                            addItemToDb(nomeInserito.text.toString(),quant,idDispensa)
+                            //refresh
+                            updateActivityView(idDispensa)
                         }
                         else{
                             Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
@@ -111,10 +111,52 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
 
     }
 
-    override fun deleteOnChange(pos: Int) {
+    override fun deleteOnChange(pos: Int,id_dispensa: Int) {
         detailedDispensaModelsList.removeAt(pos)
         detailedDispensaAdapter!!.notifyItemRemoved(pos)
 
+        var db: MyDbHelper = MyDbHelper(this, "dbDispensa.db", 1)
+        var cursor: Cursor = db.getItemOfDispensa(id_dispensa)
+        detailedDispensaModelsList.clear()
+        if (cursor.moveToFirst()) {
+            do {
+                detailedDispensaModelsList.add(DetailedDispensaModel(R.drawable.outline_info_24,cursor.getString(0),cursor.getInt(1),cursor.getInt(2)))
+            } while (cursor.moveToNext());
+        }
+
+        detailedDispensaAdapter = DetailedDispensaAdapter(detailedDispensaModelsList,this,id_dispensa)
+        recyclerView!!.adapter=detailedDispensaAdapter
+        detailedDispensaAdapter!!.notifyDataSetChanged()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var idDispensa: Int = intent.getIntExtra("id_dispensa", -1)
+        updateActivityView(idDispensa)
+    }
+
+    private fun updateActivityView(id_dispensa:Int){
+        detailedDispensaModelsList.clear()
+        recyclerView = findViewById(R.id.detailed_dispensa_rec);
+        recyclerView!!.layoutManager =(LinearLayoutManager(this))
+        detailedDispensaModelsList = ArrayList()
+        var db: MyDbHelper = MyDbHelper(this, "dbDispensa.db", 1)
+        var cursor: Cursor = db.getItemOfDispensa(id_dispensa)
+
+        if (cursor.moveToFirst()) {
+            do {
+                detailedDispensaModelsList.add(DetailedDispensaModel(R.drawable.outline_info_24,cursor.getString(0),cursor.getInt(1),cursor.getInt(2)))
+            } while (cursor.moveToNext());
+        }
+        detailedDispensaAdapter = DetailedDispensaAdapter(detailedDispensaModelsList,this,id_dispensa)
+        recyclerView!!.adapter=detailedDispensaAdapter
+        detailedDispensaAdapter!!.notifyDataSetChanged()
+    }
+
+    private fun addItemToDb(nome:String,quantita:Int,id_dispensa: Int){
+        var db: MyDbHelper = MyDbHelper(this, "dbDispensa.db", 1)
+        db.insertItem(nome,quantita,id_dispensa)
     }
 
 

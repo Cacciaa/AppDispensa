@@ -71,16 +71,20 @@ class DispensaFragment : Fragment() {
 
                     if(nomeDispensa.isNotEmpty()){
 
-                        Toast.makeText(view!!.context,"Dispensa creata", Toast.LENGTH_SHORT).show()
                         dialogDispensaCreate.dismiss()
-                        //Add element to database
+                        val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
+                        val user_id = sharedPreferences.getInt("user_id", -1) //where 0 is default value
+                        //add dispensa to db
+                        addDispensaToDb(nomeDispensa,user_id)
                         //Refresh
+                        updateFragmentView()
+
 
                     }
                     else{
                         Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
                     }
-                    //close dialog
+
 
                 }
 
@@ -109,8 +113,9 @@ class DispensaFragment : Fragment() {
         updateFragmentView()
     }
 
-    fun addDispensaToList(){
-
+    fun addDispensaToDb(nome:String,id_utente:Int){
+        var db: MyDbHelper = MyDbHelper(this.requireContext(), "dbDispensa.db", 1)
+        db.insertDispensa(nome,id_utente)
     }
 
     private fun updateFragmentView(){
