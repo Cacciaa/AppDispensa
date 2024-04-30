@@ -279,4 +279,15 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
         }
     }
 
+    fun getMacronutrienti(id_utente:Int):Cursor{
+        var db:SQLiteDatabase = this.writableDatabase
+        var query:String = "SELECT SUM(" + DbEnum.COLONNA_CARBOIDRATI.valore + ") , SUM(" +  DbEnum.COLONNA_FIBRE.valore + "), SUM(" +  DbEnum.COLONNA_GRASSI.valore + "),SUM("+ DbEnum.COLONNA_PROTEINE.valore +") " +
+                " FROM " + DbEnum.TABELLA_MACRONUTRIENTI.valore +
+                " WHERE " + DbEnum.COLONNA_ID_UTENTE.valore + "=?"
+
+        var cursor: Cursor = db.rawQuery(query, arrayOf(id_utente.toString()))
+
+        return cursor
+    }
+
 }

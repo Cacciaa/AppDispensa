@@ -21,13 +21,14 @@ import com.anychart.charts.Pie
 import com.example.appdispensa.R
 import com.example.appdispensa.databinding.FragmentMacroBinding
 import com.example.appdispensa.dbhelper.MyDbHelper
+import com.example.appdispensa.models.DispensaModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.flow.callbackFlow
 
 class MacroFragment : Fragment() {
 
     private var _binding: FragmentMacroBinding? = null
-
+    lateinit var pie: Pie
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -42,21 +43,18 @@ class MacroFragment : Fragment() {
         return root
     }
 
-    private fun setupChartView() {
-        var pie : Pie = AnyChart.pie()
-        var datalist: MutableList<DataEntry> =  ArrayList<DataEntry>()
+    override fun onResume() {
+        super.onResume()
+        updateChartView()
+    }
 
-        datalist.add(ValueDataEntry("Carboidrati",250))
-        datalist.add(ValueDataEntry("Fibre",125))
-        datalist.add(ValueDataEntry("Grassi",325))
-        datalist.add(ValueDataEntry("Proteine",215))
-        pie.data(datalist)
+    private fun setupChartView() {
+        pie = AnyChart.pie()
+        var chart : AnyChartView = binding.root.findViewById(R.id.chartMacro)
+        chart!!.setChart(pie)
         pie.background().enabled()
         pie.background().fill("#262523")
         pie.palette(arrayOf("#3BA580", "#E1D926", "#A965B8", "#4e7a96"))
-        var chart : AnyChartView = binding.root.findViewById(R.id.chartMacro)
-        chart!!.setChart(pie)
-
 
         var fab_add:FloatingActionButton = binding.root.findViewById(R.id.fab_add_macro)
 
@@ -89,6 +87,7 @@ class MacroFragment : Fragment() {
                         if(grassi.equals("")) grassi= "0"
                         db.insertMacro(carbo.toInt(),proteine.toInt(),grassi.toInt(),fibre.toInt(),user_id)
                         dialogMacroCreate.dismiss()
+                        updateChartView()
                     }
                     else{
                         Toast.makeText(view!!.context,"Errore. Ricontrolla i valori",Toast.LENGTH_SHORT).show()
@@ -104,6 +103,27 @@ class MacroFragment : Fragment() {
             })
         }
 
+    }
+
+    private fun updateChartView() {
+        var datalist: MutableList<DataEntry> =  ArrayList<DataEntry>()
+
+        var db: MyDbHelper = MyDbHelper(this.requireContext(), "dbDispensa.db", 1)
+        val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
+        val user_id = sharedPreferences.getInt("user_id", -1) //where 0 is default value
+        var cursor = db.getMacronutrienti(user_id)
+
+        if (cursor.moveToFirst()) {
+            do {
+                datalist.add(ValueDataEntry("Carboidrati",cursor.getInt(0)))
+                datalist.add(ValueDataEntry("Fibre",cursor.getInt(1)))
+                datalist.add(ValueDataEntry("Grassi",cursor.getInt(2)))
+                datalist.add(ValueDataEntry("Proteine",cursor.getInt(3)))
+            } while (cursor.moveToNext());
+        }
+
+
+        pie.data(datalist)
     }
 
     override fun onDestroyView() {
