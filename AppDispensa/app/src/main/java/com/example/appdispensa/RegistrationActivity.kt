@@ -30,10 +30,12 @@ class RegistrationActivity : AppCompatActivity() {
 
             var db: MyDbHelper = MyDbHelper(this@RegistrationActivity, "dbDispensa.db", 1)
 
-            db.registerUser(nome, email, password)
+            if(db.registerUser(nome, email, password)){
+                // go to login
+                startActivity(Intent(this,LoginActivity::class.java))
 
-            // Vai su login
-            startActivity(Intent(this,LoginActivity::class.java))
+            }
+
 
         }else{
             Toast.makeText(this, "Campi non corretti", Toast.LENGTH_SHORT).show()

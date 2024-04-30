@@ -61,23 +61,45 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
     }
 
     // Query Registrazione Utente
-    fun registerUser(nome:String,email:String,password:String){
+    fun registerUser(nome:String,email:String,password:String): Boolean{
+        if(userAlreadyRegistered(email)){
+            Toast.makeText(this.context, "Utente già registrato", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            var db:SQLiteDatabase = this.writableDatabase
+            var cv:ContentValues = ContentValues()
 
-        var db:SQLiteDatabase = this.writableDatabase
-        var cv:ContentValues = ContentValues()
+            cv.put(DbEnum.COLONNA_NOME.valore, nome)
+            cv.put(DbEnum.COLONNA_EMAIL.valore, email)
+            cv.put(DbEnum.COLONNA_PASSWORD.valore, password)
 
-        cv.put(DbEnum.COLONNA_NOME.valore, nome)
-        cv.put(DbEnum.COLONNA_EMAIL.valore, email)
-        cv.put(DbEnum.COLONNA_PASSWORD.valore, password)
+            var result: Long = db.insert(DbEnum.TABELLA_UTENTI.valore, null, cv)
 
-        var result: Long = db.insert(DbEnum.TABELLA_UTENTI.valore, null, cv)
-
-        if(result == -1L){
-            Toast.makeText(this.context, "Errore registrazione", Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(this.context, "Utente registrato", Toast.LENGTH_SHORT).show()
+            if(result == -1L){
+                Toast.makeText(this.context, "Errore registrazione", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this.context, "Utente registrato", Toast.LENGTH_SHORT).show()
+                return true
+            }
         }
 
+        return false
+
+    }
+
+    private fun userAlreadyRegistered(email:String):Boolean{
+        var db:SQLiteDatabase = this.writableDatabase
+        var query:String = "SELECT " + DbEnum.COLONNA_ID.valore +
+                " FROM " + DbEnum.TABELLA_UTENTI.valore +
+                " WHERE " + DbEnum.COLONNA_EMAIL.valore + "=?"
+
+        var cursor: Cursor = db.rawQuery(query, arrayOf(email))
+        if(cursor.count>0){
+            return true
+        }
+        else{
+            return false
+        }
     }
 
     // Query Login Utente
@@ -219,6 +241,14 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
             Toast.makeText(this.context,"Errore durante l'aggiornamento della quantità",Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    fun deleteDispensa(id_dispensa:Int){
+        var db : SQLiteDatabase = this.writableDatabase
+        var result : Int = db.delete(DbEnum.TABELLA_DISPENSA.valore,"id=?",arrayOf(id_dispensa.toString()))
+        if (result == -1){
+            Toast.makeText(this.context,"Errore durante l'eliminazione della dispensa",Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
