@@ -35,4 +35,7 @@
     <string name="grafico_dei_macronutrienti">Grafico dei macronutrienti</string>
     <string name="aggiungi_macronutrienti">Aggiungi macronutrienti</string>
     <string name="hai_0_elementi_nella_dispensa">Hai 0 elementi nella dispensa</string>
+    <string name="permesso_richiesto">Permesso richiesto</string>
+    <string name="appdispensa_richiede_l_accesso_alla_posizione_del_dispositivo">AppDispensa richiede l\'accesso alla posizione del dispositivo</string>
+    <string name="fornisci_permessi">Fornisci permessi</string>
 </resources>
