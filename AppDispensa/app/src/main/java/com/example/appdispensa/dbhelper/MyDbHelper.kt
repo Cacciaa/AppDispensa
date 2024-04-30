@@ -251,4 +251,32 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
         }
     }
 
+    fun insertMacro(carboidrati:Int,proteine:Int,grassi:Int,fibre:Int,id_utente:Int){
+        var db:SQLiteDatabase = this.writableDatabase
+        var cv:ContentValues = ContentValues()
+
+        if(carboidrati >0){
+            cv.put(DbEnum.COLONNA_CARBOIDRATI.valore, carboidrati)
+        }
+
+        if(proteine >0){
+            cv.put(DbEnum.COLONNA_PROTEINE.valore, proteine)
+        }
+
+        if(grassi >0){
+            cv.put(DbEnum.COLONNA_GRASSI.valore, grassi)
+        }
+
+        if(fibre >0){
+            cv.put(DbEnum.COLONNA_FIBRE.valore, fibre)
+        }
+
+        cv.put(DbEnum.COLONNA_ID_UTENTE.valore,id_utente)
+        var result: Long = db.insert(DbEnum.TABELLA_MACRONUTRIENTI.valore, null, cv)
+
+        if(result == -1L){
+            Toast.makeText(this.context, "Errore nell'inserimento dei macronutrienti", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

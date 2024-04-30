@@ -74,7 +74,6 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
 
                         var quant: Int = Integer.parseInt(quantInserito!!.text.toString())
                         if(quant>0 && quant <=10){
-                            Toast.makeText(view!!.context,"Prodotto aggiunto",Toast.LENGTH_SHORT).show()
                             dialogDispensaCreate.dismiss()
                             //add product to db
                             addItemToDb(nomeInserito.text.toString(),quant,idDispensa)

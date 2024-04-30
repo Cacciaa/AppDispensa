@@ -1,5 +1,7 @@
 package com.example.appdispensa.ui.macro
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -18,6 +20,7 @@ import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Pie
 import com.example.appdispensa.R
 import com.example.appdispensa.databinding.FragmentMacroBinding
+import com.example.appdispensa.dbhelper.MyDbHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.flow.callbackFlow
 
@@ -71,13 +74,20 @@ class MacroFragment : Fragment() {
 
             btnAdd!!.setOnClickListener (object:View.OnClickListener {
                 override fun onClick(view: View?) {
-                    val carbo:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextCarbo)!!.text.toString()
-                    val proteine:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextProteine)!!.text.toString()
-                    val fibre:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextFibre)!!.text.toString()
-                    val grassi:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextGrassi)!!.text.toString()
+                    var carbo:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextCarbo)!!.text.toString()
+                    var proteine:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextProteine)!!.text.toString()
+                    var fibre:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextFibre)!!.text.toString()
+                    var grassi:String = dialogMacroCreate.findViewById<EditText>(R.id.editTextGrassi)!!.text.toString()
 
                     if(carbo.isNotEmpty() || proteine.isNotEmpty() || fibre.isNotEmpty() || grassi.isNotEmpty()){
-                        Toast.makeText(view!!.context,"Macronutrienti aggiunti", Toast.LENGTH_SHORT).show()
+                        val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
+                        val user_id = sharedPreferences.getInt("user_id", -1) //where 0 is default value
+                        var db: MyDbHelper = MyDbHelper(view!!.context, "dbDispensa.db", 1)
+                        if(carbo.equals("")) carbo= "0"
+                        if(proteine.equals("")) proteine= "0"
+                        if(fibre.equals("")) fibre= "0"
+                        if(grassi.equals("")) grassi= "0"
+                        db.insertMacro(carbo.toInt(),proteine.toInt(),grassi.toInt(),fibre.toInt(),user_id)
                         dialogMacroCreate.dismiss()
                     }
                     else{
