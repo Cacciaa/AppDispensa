@@ -41,7 +41,8 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_dispensa_item)
         var collapsbar : CollapsingToolbarLayout = findViewById(R.id.collapsbar)
-
+        collapsbar.setExpandedTitleTextAppearance(R.style.FontCollapsed)
+        collapsbar.setCollapsedTitleTextAppearance(R.style.FontExpanded)
         var nome: String? = intent.getStringExtra("nome_dispensa")
         var idDispensa: Int = intent.getIntExtra("id_dispensa", -1)
         collapsbar.title = nome
