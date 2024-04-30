@@ -104,8 +104,9 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
 
 
         fabremove!!.setOnClickListener {view ->
-            //call remove item from db
-            // go to dispensa fragment and refresh the list after querying to db
+            var idDispensa: Int = intent.getIntExtra("id_dispensa", -1)
+            var db: MyDbHelper = MyDbHelper(this, "dbDispensa.db", 1)
+            db.deleteDispensa(idDispensa)
             finish()
         }
 
