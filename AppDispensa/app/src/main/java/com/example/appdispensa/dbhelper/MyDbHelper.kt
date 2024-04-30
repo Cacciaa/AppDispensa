@@ -290,4 +290,12 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
         return cursor
     }
 
+    fun deleteMacro(id_utente:Int){
+        var db : SQLiteDatabase = this.writableDatabase
+        var result : Int = db.delete(DbEnum.TABELLA_MACRONUTRIENTI.valore,"id_utente=?",arrayOf(id_utente.toString()))
+        if (result == -1){
+            Toast.makeText(this.context,"Errore durante l'eliminazione dei macronutrienti",Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

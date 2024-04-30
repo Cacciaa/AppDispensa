@@ -57,6 +57,15 @@ class MacroFragment : Fragment() {
         pie.palette(arrayOf("#3BA580", "#E1D926", "#A965B8", "#4e7a96"))
 
         var fab_add:FloatingActionButton = binding.root.findViewById(R.id.fab_add_macro)
+        var fab_remove:FloatingActionButton = binding.root.findViewById(R.id.fab_remove_macro)
+        fab_remove.setOnClickListener{ view->
+
+            var db: MyDbHelper = MyDbHelper(this.requireContext(), "dbDispensa.db", 1)
+            val sharedPreferences: SharedPreferences = binding.root.context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE)
+            val user_id = sharedPreferences.getInt("user_id", -1) //where 0 is default value
+            db.deleteMacro(user_id)
+            updateChartView()
+        }
 
         fab_add.setOnClickListener{ view->
             val inflater: LayoutInflater = getLayoutInflater();
@@ -102,6 +111,8 @@ class MacroFragment : Fragment() {
                 }
             })
         }
+
+
 
     }
 

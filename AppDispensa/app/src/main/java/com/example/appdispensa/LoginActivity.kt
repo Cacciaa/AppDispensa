@@ -27,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
 
         var email:String = findViewById<EditText>(R.id.editTextEmailL).text.toString()
         var password:String = findViewById<EditText>(R.id.editTextPasswordL).text.toString()
-        println(email)
 
         if(email.isNotEmpty() && password.isNotEmpty()) {
 
