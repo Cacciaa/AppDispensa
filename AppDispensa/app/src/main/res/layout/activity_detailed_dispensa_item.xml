@@ -21,7 +21,9 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:title="Daily Meal">
+            app:title="Daily Meal"
+            app:expandedTitleTextColor="@color/white"
+            app:collapsedTitleTextColor="@color/white">
 
             <ImageView
                 android:id="@+id/detailed_img"
