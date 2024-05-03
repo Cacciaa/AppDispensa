@@ -113,7 +113,7 @@ class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
                     stringBuilder.append("&radius=3000")
                     stringBuilder.append("&type=supermarket")
                     stringBuilder.append("&sensor=true")
-                    stringBuilder.append("&key=AIzaSyBHNcgE0IWOmUEEB_rTZwbn1i8yU5t67KM")
+                    stringBuilder.append("&key=MY_API_KEY")
 
                     var url:String = stringBuilder.toString()
 
