@@ -38,4 +38,5 @@
     <string name="permesso_richiesto">Permesso richiesto</string>
     <string name="appdispensa_richiede_l_accesso_alla_posizione_del_dispositivo">AppDispensa richiede l\'accesso alla posizione del dispositivo</string>
     <string name="fornisci_permessi">Fornisci permessi</string>
+    <string name="title_activity_near_me">NearMeActivity</string>
 </resources>

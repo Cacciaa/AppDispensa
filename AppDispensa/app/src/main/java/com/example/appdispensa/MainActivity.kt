@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
 
 
         var resultList: ArrayList<String> = extractFromCursorUserAndEmail(cursor)
-        println(resultList)
         userEmailWelcome.text = resultList.first()
 
     }
