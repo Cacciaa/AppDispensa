@@ -60,8 +60,7 @@ class MapsFragment : Fragment() {
         root = binding.root
         var locationManager : LocationManager = (root.context.getSystemService(LOCATION_SERVICE)) as LocationManager
 
-        if (ContextCompat.checkSelfPermission(root.context,permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-            locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (ContextCompat.checkSelfPermission(root.context,permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // Apri la mappa
             //Toast.makeText(root.context,"Hai gia dato i permessi", Toast.LENGTH_SHORT).show()
             var intent = (Intent(context, NearMeActivity::class.java))
