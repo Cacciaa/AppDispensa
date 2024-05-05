@@ -39,5 +39,5 @@
     <string name="appdispensa_richiede_l_accesso_alla_posizione_del_dispositivo">AppDispensa richiede l\'accesso alla posizione del dispositivo</string>
     <string name="fornisci_permessi">Fornisci permessi</string>
     <string name="title_activity_near_me">NearMeActivity</string>
-    <string name="api_key">MYAPYKEY</string>
+    <string name="api_key">AIzaSyA5pC4iM_hx9pt30qW1eIyFSrnoVx-FFGw</string>
 </resources>

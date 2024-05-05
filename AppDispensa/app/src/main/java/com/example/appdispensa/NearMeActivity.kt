@@ -31,14 +31,11 @@ import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.json.JSONObject
-import java.util.concurrent.Executors
 
 
 class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -49,6 +46,7 @@ class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
     private var lat : Double = 0.0
     private  var lng : Double = 0.0
 
+    private var allMarker : MutableList<Marker> = ArrayList()
 
     private lateinit  var  locationRequest : LocationRequest
 
@@ -184,12 +182,10 @@ class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
         task.addOnSuccessListener(object:OnSuccessListener<Location>{
             override fun onSuccess(p0: Location?) {
                 if(p0!=null){
+                    removeAllMarker()
                     lat = p0.latitude
                     lng = p0.longitude
                     var latLng : LatLng = LatLng(lat,lng)
-                    mMap.addMarker(MarkerOptions().position(latLng).title("Sei quì"))
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13F))
                     var stringBuilder : StringBuilder = StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?")
                     stringBuilder.append("location=" + lat + "," + lng)
                     stringBuilder.append("&radius=3000")
@@ -200,15 +196,23 @@ class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     var fetchdata : FetchData = FetchData()
 
-                    fetchdata.AsyncCall(mMap,url)
+                    fetchdata.AsyncCall(mMap,url,allMarker)
+
+                    var m : Marker ?= mMap.addMarker(MarkerOptions().position(latLng).title("Sei quì"))
+                    allMarker.add(m!!)
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13F))
 
                 }
             }
         })
     }
 
-
-
+    private fun removeAllMarker() {
+        for(m in allMarker){
+            m.remove()
+        }
+    }
 
 
     @SuppressLint("MissingSuperCall")

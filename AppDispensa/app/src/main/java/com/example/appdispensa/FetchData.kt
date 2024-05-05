@@ -1,21 +1,13 @@
 package com.example.appdispensa
 
-import android.location.Location
-import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.json.JSONObject
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -29,7 +21,7 @@ class FetchData {
 
     var handler: Handler = Handler(Looper.getMainLooper())
 
-    fun AsyncCall(googleMap: GoogleMap, UrlServer: String) {
+    fun AsyncCall(googleMap: GoogleMap, UrlServer: String,allMarkers : MutableList<Marker>) {
         val CONNECTION_TIMEOUT = 10000
         val READ_TIMEOUT = 15000
         var getResult: String? = null
@@ -44,14 +36,14 @@ class FetchData {
             googleNearbyPlaces = downloadUrl.retrieveUrl(url)
 
             handler.post {
-                makeApiCall(googleNearbyPlaces, googleMap)
+                makeApiCall(googleNearbyPlaces, googleMap,allMarkers)
             }
         }
 
     }
 
 
-    fun makeApiCall(value: String, mMap: GoogleMap) {
+    fun makeApiCall(value: String, mMap: GoogleMap, allMarkers: MutableList<Marker>) {
 
         val jsonObject = JSONObject(value) // This will make the json below as an object for you
 
@@ -75,8 +67,8 @@ class FetchData {
             markeroptions.title(name)
             markeroptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
             markeroptions.position(newlatlng)
-            mMap.addMarker(markeroptions)
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newlatlng, 13F))
+            allMarkers.add(mMap.addMarker(markeroptions)!!)
+            //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newlatlng, 13F))
 
 
         }
