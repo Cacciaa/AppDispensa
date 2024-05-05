@@ -32,7 +32,7 @@
                 android:id="@+id/detailed_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nothing_font"
+                android:fontFamily="@font/lobster_two"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="Name"

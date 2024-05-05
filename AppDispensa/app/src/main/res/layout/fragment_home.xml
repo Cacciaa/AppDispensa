@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="@string/hai_0_elementi_nella_dispensa"
+        android:fontFamily="@font/lobster_two"
         android:textAlignment="center"
         android:textColor="#FBFBFB"
         android:textSize="19sp"

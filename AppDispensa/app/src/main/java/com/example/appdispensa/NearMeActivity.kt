@@ -196,7 +196,6 @@ class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
                     stringBuilder.append("&type=supermarket")
                     stringBuilder.append("&sensor=true")
                     stringBuilder.append("&key="+resources.getString(R.string.api_key))
-
                     var url:String = stringBuilder.toString()
 
                     var fetchdata : FetchData = FetchData()

@@ -121,7 +121,7 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
         detailedDispensaModelsList.clear()
         if (cursor.moveToFirst()) {
             do {
-                detailedDispensaModelsList.add(DetailedDispensaModel(R.drawable.outline_info_24,cursor.getString(0),cursor.getInt(1),cursor.getInt(2)))
+                detailedDispensaModelsList.add(DetailedDispensaModel(getInitialCharacater(cursor.getString(0)),cursor.getString(0),cursor.getInt(1),cursor.getInt(2)))
             } while (cursor.moveToNext());
         }
 
@@ -147,7 +147,7 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
 
         if (cursor.moveToFirst()) {
             do {
-                detailedDispensaModelsList.add(DetailedDispensaModel(R.drawable.outline_info_24,cursor.getString(0),cursor.getInt(1),cursor.getInt(2)))
+                detailedDispensaModelsList.add(DetailedDispensaModel(getInitialCharacater(cursor.getString(0)),cursor.getString(0),cursor.getInt(1),cursor.getInt(2)))
             } while (cursor.moveToNext());
         }
         detailedDispensaAdapter = DetailedDispensaAdapter(detailedDispensaModelsList,this,id_dispensa)
@@ -158,6 +158,40 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
     private fun addItemToDb(nome:String,quantita:Int,id_dispensa: Int){
         var db: MyDbHelper = MyDbHelper(this, "dbDispensa.db", 1)
         db.insertItem(nome,quantita,id_dispensa)
+    }
+
+
+    private fun getInitialCharacater(nome:String) : Int{
+        val init:String = nome[0].toString().lowercase()
+        when(init) {
+            "a" -> return R.drawable.letter_a
+            "b" -> return R.drawable.letter_b
+            "c" -> return R.drawable.letter_c
+            "d" -> return R.drawable.letter_d
+            "e" -> return R.drawable.letter_e
+            "f" -> return R.drawable.letter_f
+            "g" -> return R.drawable.letter_g
+            "h" -> return R.drawable.letter_h
+            "i" -> return R.drawable.letter_i
+            "j" -> return R.drawable.letter_j
+            "l" -> return R.drawable.letter_l
+            "m" -> return R.drawable.letter_m
+            "n" -> return R.drawable.letter_n
+            "o" -> return R.drawable.letter_o
+            "p" -> return R.drawable.letter_p
+            "q" -> return R.drawable.letter_q
+            "r" -> return R.drawable.letter_r
+            "s" -> return R.drawable.letter_s
+            "t" -> return R.drawable.letter_t
+            "u" -> return R.drawable.letter_u
+            "v" -> return R.drawable.letter_v
+            "w" -> return R.drawable.letter_w
+            "x" -> return R.drawable.letter_x
+            "y" -> return R.drawable.letter_y
+            "z" -> return R.drawable.letter_z
+            else -> return R.drawable.outline_info_24
+
+        }
     }
 
 
