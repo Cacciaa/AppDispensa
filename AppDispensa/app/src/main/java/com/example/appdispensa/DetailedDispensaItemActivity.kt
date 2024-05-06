@@ -34,7 +34,10 @@ class DetailedDispensaItemActivity : AppCompatActivity(),OnValueChangeInt{
     var detailedDispensaAdapter : DetailedDispensaAdapter?=null
     var imageview: ImageView?=null
     var fabadd:FloatingActionButton?=null
+
     var fabremove:FloatingActionButton?=null
+
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.example.appdispensa.dbhelper.MyDbHelper
+import com.hololo.tutorial.library.TutorialActivity
 
 class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,8 @@ class RegistrationActivity : AppCompatActivity() {
 
             if(db.registerUser(nome, email, password)){
                 // go to login
-                startActivity(Intent(this,LoginActivity::class.java))
+                //startActivity(Intent(this,LoginActivity::class.java))
+                startActivity(Intent(this,IntroActivity::class.java))
 
             }
 
