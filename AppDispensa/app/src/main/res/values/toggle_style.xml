@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="mySwitchToggle">
+        <item name="colorControlActivated">@color/purple_500</item>
+    </style>
+    <style name="FontCollapsed"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/lobster</item>
+        <item name="android:textSize">35sp</item>
+    </style>
+
+    <style name="FontExpanded"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/lobster</item>
+        <item name="android:textSize">35sp</item>
+    </style>
+
+
+</resources>

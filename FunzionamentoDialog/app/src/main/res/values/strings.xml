@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FunzionamentoDialogPerPopup</string>
+    <string name="inserimento_nuovo_elemento">Inserimento nuovo elemento</string>
+    <string name="nome_elemento">Nome elemento:</string>
+    <string name="inserisci_qui">Inserisci qui!</string>
+    <string name="conferma">Conferma</string>
+    <string name="annulla">Annulla</string>
+    <string name="quantit">Quantità</string>
+</resources>

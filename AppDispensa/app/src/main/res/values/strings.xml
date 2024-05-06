@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">AppDispensa</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="dispensa">Dispensa</string>
+    <string name="crea_la_tua_dispensa_digitale">Crea la tua dispensa digitale</string>
+    <string name="login">Accedi</string>
+    <string name="nome">Nome</string>
+    <string name="indirizzo_email">Indirizzo Email</string>
+    <string name="password">Password</string>
+    <string name="sei_gi_registrato">Sei già registrato?</string>
+    <string name="registrati">Registrati</string>
+    <string name="accedi">Accedi</string>
+    <string name="non_sei_registrato">Non sei registrato?</string>
+    <string name="vicino_a_te">Vicino a te</string>
+    <string name="utente">Utente:</string>
+    <string name="nuovo_prodotto">Nuovo Prodotto</string>
+    <string name="nome_prodotto">Nome prodotto:</string>
+    <string name="nomeHintProd">Nome...</string>
+    <string name="quantit">Quantità:</string>
+    <string name="quantProd">Quantità....</string>
+    <string name="conferma">Conferma</string>
+    <string name="annulla">Annulla</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="carboidrati">Carboidrati</string>
+    <string name="grafico_dei_macronutrienti">Grafico dei macronutrienti</string>
+    <string name="aggiungi_macronutrienti">Aggiungi macronutrienti</string>
+    <string name="hai_0_elementi_nella_dispensa">Hai 0 elementi nella dispensa</string>
+    <string name="permesso_richiesto">Permesso richiesto</string>
+    <string name="appdispensa_richiede_l_accesso_alla_posizione_del_dispositivo">AppDispensa richiede l\'accesso alla posizione del dispositivo</string>
+    <string name="fornisci_permessi">Fornisci permessi</string>
+    <string name="title_activity_near_me">NearMeActivity</string>
+    <string name="api_key">MYAPIKEY</string>
+</resources>

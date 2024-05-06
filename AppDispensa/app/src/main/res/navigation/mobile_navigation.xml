@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.appdispensa.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_dispensa"
+        android:name="com.example.appdispensa.ui.dispensa.DispensaFragment"
+        android:label="@string/dispensa"
+        tools:layout="@layout/dispensa_fragment" />
+
+    <fragment
+        android:id="@+id/nav_maps"
+        android:name="com.example.appdispensa.ui.maps.MapsFragment"
+        android:label="@string/vicino_a_te"
+        tools:layout="@layout/maps_fragment" />
+
+    <fragment
+        android:id="@+id/nav_macro"
+        android:name="com.example.appdispensa.ui.macro.MacroFragment"
+        android:label="Macro"
+        tools:layout="@layout/fragment_macro"/>
+
+
+
+
+</navigation>

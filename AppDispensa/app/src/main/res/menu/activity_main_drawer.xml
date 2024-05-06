@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_dispensa"
+            android:icon="@drawable/round_fastfood_24"
+            android:title="@string/dispensa" />
+        <item
+            android:id="@+id/nav_maps"
+            android:icon="@drawable/outline_map_24"
+            android:title="@string/vicino_a_te" />
+        <item
+            android:id="@+id/nav_macro"
+            android:icon="@drawable/graph_svgrepo_com"
+            android:title="Macro" />
+
+
+
+    </group>
+</menu>
