@@ -66,19 +66,7 @@ class IntroActivity : TutorialActivity() {
                 .build()
         )
 
-        addFragment(
-            Step.Builder()
-                .setBackgroundColor(Color.parseColor("#FF0957")) // int background color
-                .setDrawable(R.drawable.intro7) // int top drawable
-                .build()
-        )
 
-        addFragment(
-            Step.Builder()
-                .setBackgroundColor(Color.parseColor("#FF0957")) // int background color
-                .setDrawable(R.drawable.intro8) // int top drawable
-                .build()
-        )
 
 
     }
