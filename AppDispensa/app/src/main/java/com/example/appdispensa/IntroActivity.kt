@@ -1,15 +1,10 @@
 package com.example.appdispensa
 
-import com.example.appdispensa.R
-import android.Manifest;
 import android.content.Intent
-import android.graphics.Color;
-import android.os.Bundle;
-import android.widget.Toast
-
-import com.hololo.tutorial.library.PermissionStep;
-import com.hololo.tutorial.library.Step;
-import com.hololo.tutorial.library.TutorialActivity;
+import android.graphics.Color
+import android.os.Bundle
+import com.hololo.tutorial.library.Step
+import com.hololo.tutorial.library.TutorialActivity
 
 
 class IntroActivity : TutorialActivity() {
@@ -66,19 +61,7 @@ class IntroActivity : TutorialActivity() {
                 .build()
         )
 
-        addFragment(
-            Step.Builder()
-                .setBackgroundColor(Color.parseColor("#FF0957")) // int background color
-                .setDrawable(R.drawable.intro7) // int top drawable
-                .build()
-        )
 
-        addFragment(
-            Step.Builder()
-                .setBackgroundColor(Color.parseColor("#FF0957")) // int background color
-                .setDrawable(R.drawable.intro8) // int top drawable
-                .build()
-        )
 
 
     }
@@ -88,7 +71,9 @@ class IntroActivity : TutorialActivity() {
     }
 
     override fun finishTutorial() {
-        startActivity(Intent(this,LoginActivity::class.java))
+        val intent = Intent(this,LoginActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
     override fun setCancelText(text: String?) {
