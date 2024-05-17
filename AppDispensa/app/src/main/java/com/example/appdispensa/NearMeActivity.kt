@@ -9,6 +9,7 @@ import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
@@ -118,7 +119,6 @@ class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onComplete(@NonNull p0: Task<LocationSettingsResponse>) {
                 try{
                     var response : LocationSettingsResponse? =  p0.getResult(ApiException::class.java)
-                    Toast.makeText(applicationContext,"GPS is already enable",Toast.LENGTH_SHORT).show()
                     getCurrentLocation()
 
 
@@ -147,10 +147,10 @@ class NearMeActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 101 ){
            if(resultCode == RESULT_OK){
-               Toast.makeText(applicationContext,"Now GPS is enable",Toast.LENGTH_SHORT).show()
+               Log.d("nearme","GPS Enable")
            }
             if(resultCode == RESULT_CANCELED){
-                Toast.makeText(applicationContext,"Denied GPS enable",Toast.LENGTH_SHORT).show()
+                Log.d("nearme","GPS denied to enable")
             }
         }
     }
