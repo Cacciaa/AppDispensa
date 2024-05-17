@@ -52,6 +52,9 @@ class MyDbHelper(var context: Context, var DATABASE_NAME: String?, var DATABASE_
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS " + DbEnum.TABELLA_UTENTI.valore)
+        db!!.execSQL("DROP TABLE IF EXISTS " + DbEnum.TABELLA_DISPENSA.valore)
+        db!!.execSQL("DROP TABLE IF EXISTS " + DbEnum.TABELLA_PRODOTTI.valore)
+        db!!.execSQL("DROP TABLE IF EXISTS " + DbEnum.TABELLA_MACRONUTRIENTI.valore)
         onCreate(db)
     }
 
